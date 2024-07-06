@@ -1,5 +1,5 @@
-// const socket = io('https://chatapp-mqt4.onrender.com')
-const socket = io('ws://localhost:3500')
+const socket = io('https://chatapp-mqt4.onrender.com')
+// const socket = io('ws://localhost:3500')
 
 const msgInput = document.querySelector('#message')
 const nameInput = document.querySelector('#name')
