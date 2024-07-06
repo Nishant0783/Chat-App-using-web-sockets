@@ -1,4 +1,5 @@
-const socket = io('https://chatapp-mqt4.onrender.com')
+// const socket = io('https://chatapp-mqt4.onrender.com')
+const socket = io('ws://localhost:3500')
 
 const msgInput = document.querySelector('#message')
 const nameInput = document.querySelector('#name')
@@ -38,8 +39,8 @@ document.querySelector('.form-join')
     .addEventListener('submit', enterRoom)
 
 msgInput.addEventListener('keypress', () => {
-    socket.emit('activity', nameInput.value)
-})
+    socket.emit("activity", nameInput.value);
+});
 
 // Listen for messages 
 socket.on("message", (data) => {
@@ -68,14 +69,12 @@ socket.on("message", (data) => {
 
 let activityTimer
 socket.on("activity", (name) => {
-    activity.textContent = `${name} is typing...`
-
-    // Clear after 3 seconds 
-    clearTimeout(activityTimer)
+    activity.textContent = `${name} is typing...`;
+    clearTimeout(activityTimer);
     activityTimer = setTimeout(() => {
-        activity.textContent = ""
-    }, 3000)
-})
+        activity.textContent = "";
+    }, 3000);
+});
 
 socket.on('userList', ({ users }) => {
     showUsers(users)
